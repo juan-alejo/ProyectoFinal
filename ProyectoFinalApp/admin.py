@@ -14,6 +14,11 @@ class JugadorAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido', 'usuario', 'edad')
     saerch_fields = ('nombre', 'apellido', 'usuario', 'edad')
     
+class JuegoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'genero')
+    saerch_fields = ('nombre', 'genero')
+    
     
 admin.site.register(Servidor, ServidorAdmin)
 admin.site.register(Jugador, JugadorAdmin)
+admin.site.register(Juego, JuegoAdmin)
