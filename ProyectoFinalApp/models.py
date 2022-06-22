@@ -18,3 +18,11 @@ class Jugador(models.Model):
     
     class Meta:
         verbose_name_plural = "Jugadores"
+        
+        
+class Juego(models.Model):
+    nombre = models.CharField(max_length = 20)
+    genero = models.CharField(max_length = 20)
+    
+    class Meta:
+        verbose_name_plural = "Juegos"

@@ -80,3 +80,10 @@ def crearJugador(request):
         
         
         return render(request,"ProyectoFinalApp/formularioJugadores.html",{"form":formularioVacio})
+    
+
+def juegos(request):
+    
+    juegos = Juego.objects.all()
+    
+    return render(request,"ProyectoFinalApp/jugadores.html",{"juegos":juegos})
