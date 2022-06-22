@@ -16,4 +16,4 @@ class JugadorAdmin(admin.ModelAdmin):
     
     
 admin.site.register(Servidor, ServidorAdmin)
-    
+admin.site.register(Jugador, JugadorAdmin)

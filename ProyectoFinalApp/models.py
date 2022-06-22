@@ -16,3 +16,5 @@ class Jugador(models.Model):
     usuario = models.CharField(max_length = 25)
     edad = models.IntegerField()
     
+    class Meta:
+        verbose_name_plural = "Jugadores"
