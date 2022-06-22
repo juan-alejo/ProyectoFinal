@@ -6,12 +6,12 @@ Crear Servidor - Proyecto Final
 {% endblock %}
 
 {% block contenidoPagina %}
-<h2> Crea un curso servidor:</h2>
+<h2> Crea un servidor:</h2>
 <form action="" method="post">
     {% csrf_token %}
 
     {{ form.as_p }}
-    
+
     <input type="submit" value="Crear servidor">
 </form>
 
