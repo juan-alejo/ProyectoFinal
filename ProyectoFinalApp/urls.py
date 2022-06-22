@@ -7,5 +7,6 @@ urlpatterns = [
     path('', inicio, name="inicio"),
     path('servidores/', servidores, name= "servidores"),
     path('crearservidor/', crearServidor, name= "crearServidor"),
-    #path('profesores/', profesores, name="profesores"),
+    path('jugadores/', jugadores, name= "jugadores"),
+    path('crearjugador/', crearJugador, name= "crearJugador"),
 ]

@@ -13,8 +13,8 @@ class Servidor(models.Model):
 class Jugador(models.Model):
     nombre = models.CharField(max_length = 20)
     apellido = models.CharField(max_length = 20)
-    usuario = models.CharField(max_length = 25)
     edad = models.IntegerField()
+    usuario = models.CharField(max_length = 25)
     
     class Meta:
         verbose_name_plural = "Jugadores"

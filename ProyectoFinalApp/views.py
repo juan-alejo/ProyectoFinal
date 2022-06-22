@@ -13,12 +13,6 @@ def inicio(request):
 
 def servidores(request):
     
-    #servidores = Servidor()
-    
-    #listaServidores = [x.nombre for x in Servidor.objects.all()]
-    
-    #return HttpResponse((f"Servidores: {str(listaServidores)}"))
-    
     servidores = Servidor.objects.all()
     
     return render(request,"ProyectoFinalApp/servidores.html",{"servidores":servidores})
@@ -51,5 +45,38 @@ def crearServidor(request):
         
         
         return render(request,"ProyectoFinalApp/formularioServidor.html",{"form":formularioVacio})
+
+def jugadores(request):
+    
+    jugadores = Jugador.objects.all()
+    
+    return render(request,"ProyectoFinalApp/jugadores.html",{"jugadores":jugadores})
+
+
+def crearJugador(request):
+ 
+    #post
+    if request.method == "POST":
         
-   # return HttpResponse("asd")
+        formularioJugador = NuevoJugador(request.POST)
+        
+        if formularioJugador.is_valid():
+            
+            infoJugador = formularioJugador.cleaned_data
+        
+            jugador = Jugador(nombre = infoJugador["nombre"], apellido=(infoJugador["apellido"]), usuario=(infoJugador["usuario"]), edad=(infoJugador["edad"]))
+            
+            jugador.save()
+            
+            return redirect("jugadores") 
+        
+        else:
+            return render(request,"ProyectoFinalApp/formularioJugadores.html",{"form":formularioVacio})
+    
+    
+    else: #get y otros
+        
+        formularioVacio = NuevoJugador()
+        
+        
+        return render(request,"ProyectoFinalApp/formularioJugadores.html",{"form":formularioVacio})
