@@ -11,7 +11,14 @@ def inicio(request):
 
     return render(request,'ProyectoFinalApp\index.html')
 
-def crearServidor(request):
+def servidores(request):
     
-
-    return HttpResponse(f"asd")
+    #servidores = Servidor()
+    
+    #listaServidores = [x.nombre for x in Servidor.objects.all()]
+    
+    #return HttpResponse((f"Servidores: {str(listaServidores)}"))
+    
+    servidores = Servidor.objects.all()
+    
+    return render(request,"ProyectoFinalApp/servidores.html",{"servidores":servidores})
