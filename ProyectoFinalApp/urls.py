@@ -9,4 +9,6 @@ urlpatterns = [
     path('crearservidor/', crearServidor, name= "crearServidor"),
     path('jugadores/', jugadores, name= "jugadores"),
     path('crearjugador/', crearJugador, name= "crearJugador"),
+    path('juegos/', juegos, name= "juegos"),
+    path('crearjuego/', crearJuego, name= "crearjuego"),
 ]

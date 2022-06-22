@@ -86,4 +86,33 @@ def juegos(request):
     
     juegos = Juego.objects.all()
     
-    return render(request,"ProyectoFinalApp/jugadores.html",{"juegos":juegos})
+    return render(request,"ProyectoFinalApp/juegos.html",{"juegos":juegos})
+
+def crearJuego(request):
+ 
+    #post
+    if request.method == "POST":
+        
+        formularioJuego = NuevoJuego(request.POST)
+        
+        if formularioJuego.is_valid():
+            
+            infoJuego = formularioJuego.cleaned_data
+        
+            juego = Juego(nombre = infoJuego["nombre"], genero=(infoJuego["genero"]))
+            
+            juego.save()
+            
+            return redirect("juegos") 
+        
+        else:
+            return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formularioVacio})
+    
+    
+    else: #get y otros
+        
+        formularioVacio = NuevoJuego()
+        
+        
+        return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formularioVacio})
+    
