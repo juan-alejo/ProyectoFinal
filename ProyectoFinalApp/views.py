@@ -109,7 +109,7 @@ def crearJuego(request):
             
             infoJuego = formularioJuego.cleaned_data
         
-            juego = Juego(nombre = infoJuego["nombre"], genero=(infoJuego["genero"]))
+            juego = Juego(nombre = infoJuego["nombre"], genero = (infoJuego["genero"]))
             
             juego.save()
             
@@ -126,3 +126,35 @@ def crearJuego(request):
         
         return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formularioVacio})
     
+    
+    
+def eliminarJuego(request, juego_id):
+    
+    juego = Juego.objects.get(id=juego_id)
+    juego.delete()
+    
+    return redirect("juegos")
+
+def editarJuego(request, juego_id):
+    
+    
+    juego = Juego.objects.get(id=juego_id)
+
+    if request.method == "POST":
+        
+        formulario = NuevoJuego(request.POST)
+        
+        if formulario.is_valid():
+            
+            infoJuego = formulario.cleaned_data
+            
+            juego.nombre = infoJuego["nombre"]
+            juego.genero = infoJuego["genero"]
+            juego.save()
+            
+            return redirect("juegos")
+        
+        
+    formulario = NuevoJuego(initial={"nombre":juego.nombre, "genero":juego.genero})
+    
+    return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formulario})

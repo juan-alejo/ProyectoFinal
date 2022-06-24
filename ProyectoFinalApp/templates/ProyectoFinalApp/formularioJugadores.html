@@ -2,17 +2,17 @@
 {% load static %}
 
 {% block tituloPagina %}
-Añadir un jugador - Proyecto Final
+Formulario jugador - Proyecto Final
 {% endblock %}
 
 {% block contenidoPagina %}
-<h2> Añadir un jugador:</h2>
+<h2> Formulario jugador:</h2>
 <form action="" method="post">
     {% csrf_token %}
 
     {{ form.as_p }}
     
-    <input type="submit" value="Añadir jugador">
+    <input type="submit" value="Guardar jugador">
     <p></p>
 </form>
 
