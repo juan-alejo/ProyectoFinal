@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.db.models import Q
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import *
 from .forms import *
@@ -158,3 +161,30 @@ def editarJuego(request, juego_id):
     formulario = NuevoJuego(initial={"nombre":juego.nombre, "genero":juego.genero})
     
     return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formulario})
+
+class JuegoList(ListView):
+    
+    model = Juego
+    templateName = "ProyectoFinalApp/juegoslist.html"
+    
+class JuegoDetail(DetailView):
+    
+    model = Juego
+    templateName = "ProyectoFinalApp/juegoDetail.html"
+    
+class JuegoCreate(CreateView):
+    
+    model = Juego
+    success_url = "/app/list"   #Atención a la primer barra
+    fields = ["nombre", "genero"]
+    
+    
+class JuegoUpdate(UpdateView):
+    model = Juego
+    success_url = "/app/list"   #Atención a la primer barra
+    fields = ["nombre", "genero"]
+    
+class JuegoDelete(UpdateView):
+    model = Juego
+    success_url = "/app/list"   #Atención a la primer barra
+    
