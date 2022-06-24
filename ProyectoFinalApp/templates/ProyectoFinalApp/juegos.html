@@ -6,6 +6,7 @@ Juegos - Proyecto Final
 {% endblock %}
 
 {% block contenidoPagina %}
+{% comment %}
 <section class="bg-light py-5">
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
@@ -19,6 +20,60 @@ Juegos - Proyecto Final
                     {% endfor %}
                 </ul>
                 &nbsp&nbsp<a href="{% url 'crearjuego' %}">+ Agregar nuevo juego</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endcomment %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h1>Juegos:</h1>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-12">
+                <form class="d-flex my-2 my-lg-0" action="" method="post">
+                    {% csrf_token %}
+                    <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por nombre o género" aria-label="Search">
+                    <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+                    <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crearjuego' %}"> <i class="bi bi-plus-lg"></i> Añadir juego</a>
+                </form>
+            </div>
+        </div>
+        <br>
+        <h4>Resultados
+            {% if search %}
+                para "{{busqueda}}":
+            {% else %}
+                totales:
+            {% endif %}
+        </h4>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Comisión</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for juego in juegos %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{juego.nombre}}</td>
+                                <td>{{juego.genero}}</td>
+                                <td>
+                                    <a href="{% url 'crearjuego' %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'crearjuego' %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

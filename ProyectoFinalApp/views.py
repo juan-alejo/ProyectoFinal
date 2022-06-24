@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.db.models import Q
 
 from .models import *
 from .forms import *
@@ -83,6 +84,15 @@ def crearJugador(request):
     
 
 def juegos(request):
+    
+    if request.method == "POST":
+        
+        search = request.POST["search"]
+        
+        if search !="":
+            juegos = Juego.objects.filter( Q(nombre__icontains=search)| Q(genero__icontains=search) ).values()
+            
+            return render(request, "ProyectoFinalApp/juegos.html",{"juegos":juegos, "search":True, "busqueda":search})
     
     juegos = Juego.objects.all()
     
