@@ -16,11 +16,11 @@ y servidores (nombre y versión).
 ## Installation
 Lenguajes y frameworks:
 
-python
+- python
 
 https://www.python.org/downloads/
 
-Django
+- Django
 ```bash
 python -m pip install django
 ```
