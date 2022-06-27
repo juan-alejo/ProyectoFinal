@@ -13,9 +13,9 @@
         <li>
             Nombre: {{juego.nombre}}
             Genero: {{juego.genero}}
-            <a href="{% 'url juegoDetail' juego.id %}">Ver</a>
-            <a href="{% 'url juegoUpdate' juego.id %}">Editar</a>
-            <a href="{% 'url juegoDelete' juego.id %}">Eliminar</a>
+            <a href="{% url 'juegoDetail' juego.id %}">Ver</a>
+            <a href="{% url 'juegoUpdate' juego.id %}">Editar</a>
+            <a href="{% url 'juegoDelete' juego.id %}">Eliminar</a>
         </li>
         {% endfor %}
     </ul>

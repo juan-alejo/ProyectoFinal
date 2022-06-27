@@ -165,12 +165,12 @@ def editarJuego(request, juego_id):
 class JuegoList(ListView):
     
     model = Juego
-    templateName = "ProyectoFinalApp/juegoslist.html"
+    template_name = "ProyectoFinalApp/juegosList.html"
     
 class JuegoDetail(DetailView):
     
     model = Juego
-    templateName = "ProyectoFinalApp/juegoDetail.html"
+    template_name = "ProyectoFinalApp/juegoDetail.html"
     
 class JuegoCreate(CreateView):
     

@@ -14,9 +14,9 @@ urlpatterns = [
     path('editarJuego/<juego_id>', editarJuego, name = "editarJuego"),
     
     path('juegos/', juegos, name= "juegos"),
-    path(r'list', JuegoList.as_view(), name = "juegoList"),
-    path(r'^(?P<pk>\d+)$', JuegoDetail.as_view(), name = "juegoDetail"),       ###
-    path(r'^nuevo$', JuegoCreate.as_view(), name = "juegoCreate"), ###3
-    path(r'^editar/(?P<pk>\d+)$', JuegoUpdate.as_view(), name = "juegoUpdate"),       ###
-    path(r'^eliminar/(?P<pk>\d+)$', JuegoDelete.as_view(), name = "juegoDelete"),       ###
+    path('juegos/list', JuegoList.as_view(), name = "juegosList"),
+    path('juegos/detail/<pk>', JuegoDetail.as_view(), name = "juegoDetail"),       ###
+    path('juegos/nuevo', JuegoCreate.as_view(), name = "juegoCreate"), ###3
+    path('juegos/editar/<pk>', JuegoUpdate.as_view(), name = "juegoUpdate"),       ###
+    path('juegos/eliminar/<pk>', JuegoDelete.as_view(), name = "juegoDelete"),       ###
 ]
