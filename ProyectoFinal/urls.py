@@ -21,6 +21,7 @@ from ProyectoFinalApp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', inicio, name="inicio"),
     
     #URLS de la app
     path('app/', include('ProyectoFinalApp.urls')),

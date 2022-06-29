@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate, logout
 
 from .models import *
 from .forms import *
@@ -15,12 +17,62 @@ def inicio(request):
 
     return render(request,'ProyectoFinalApp/index.html')
 
+def login_request(request):
+    
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+        
+        if form.is_valid():
+            
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect("inicio")
+            else:
+                return redirect("login")
+            
+        else:
+            return redirect("login")
+            
+    form = AuthenticationForm()
+    
+    return render(request,"ProyectoFinalApp/login.html", {"form":form})
+
+def register_request(request):
+    
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
+        
+        if form.is_valid():
+            
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+
+            form.save()
+            
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect("inicio")
+            else:
+                return redirect("login")
+            
+        
+        return render(request,"ProyectoFinalApp/register.html")
+    
+    form = UserRegisterForm()
+    
+    return render(request,"ProyectoFinalApp/register.html", {"form":form})
+
 def servidores(request):
     
     servidores = Servidor.objects.all()
     
     return render(request,"ProyectoFinalApp/servidores.html",{"servidores":servidores})
-
 
 def crearServidor(request):
  
@@ -56,7 +108,6 @@ def jugadores(request):
     
     return render(request,"ProyectoFinalApp/jugadores.html",{"jugadores":jugadores})
 
-
 def crearJugador(request):
  
     #post
@@ -83,8 +134,7 @@ def crearJugador(request):
         formularioVacio = NuevoJugador()
         
         
-        return render(request,"ProyectoFinalApp/formularioJugadores.html",{"form":formularioVacio})
-    
+        return render(request,"ProyectoFinalApp/formularioJugadores.html",{"form":formularioVacio})   
 
 def juegos(request):
     
@@ -127,9 +177,7 @@ def crearJuego(request):
         formularioVacio = NuevoJuego()
         
         
-        return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formularioVacio})
-    
-    
+        return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formularioVacio})   
     
 def eliminarJuego(request, juego_id):
     

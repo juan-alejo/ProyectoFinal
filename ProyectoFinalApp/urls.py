@@ -5,6 +5,8 @@ from .views import *
 urlpatterns = [
     # URLS de la app
     path('', inicio, name="inicio"),
+    path('login/', login_request, name="login"),
+    path('register/', register_request, name="register"),
     path('servidores/', servidores, name= "servidores"),
     path('crearservidor/', crearServidor, name= "crearServidor"),
     path('jugadores/', jugadores, name= "jugadores"),

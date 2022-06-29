@@ -1,0 +1,23 @@
+{% extends 'ProyectoFinalApp/base.html'%}
+{% load static %}
+
+{% block tituloPagina %}
+Login - Proyecto Final App
+{% endblock %}
+
+{% block contenidoPagina %}
+
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h2>Iniciar Sesión</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+
+            {{form.as_p}}
+
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
