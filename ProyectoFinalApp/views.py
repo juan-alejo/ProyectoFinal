@@ -13,7 +13,7 @@ from .forms import *
 
 def inicio(request):
 
-    return render(request,'ProyectoFinalApp\index.html')
+    return render(request,'ProyectoFinalApp/index.html')
 
 def servidores(request):
     
