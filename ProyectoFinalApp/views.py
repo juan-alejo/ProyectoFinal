@@ -219,6 +219,30 @@ def editarJuego(request, juego_id):
     
     return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formulario})
 
+def editarServidor(request, servidor_id):
+    
+    
+    servidor = Servidor.objects.get(id=servidor_id)
+
+    if request.method == "POST":
+        
+        formulario = NuevoServidor(request.POST)
+        
+        if formulario.is_valid():
+            
+            infoServidor = formulario.cleaned_data
+            
+            servidor.nombre = infoServidor["nombre"]
+            servidor.version = infoServidor["version"]
+            servidor.save()
+            
+            return redirect("servidores")
+        
+        
+    formulario = NuevoServidor(initial={"nombre":servidor.nombre, "version":servidor.version})
+    
+    return render(request,"ProyectoFinalApp/formularioServidor.html",{"form":formulario})
+
 class JuegoList(LoginRequiredMixin,ListView):
     
     model = Juego
@@ -241,8 +265,33 @@ class JuegoUpdate(UpdateView):
     success_url = "/app/list"   #Atención a la primer barra
     fields = ["nombre", "genero"]
     
-class JuegoDelete(UpdateView):
+class JuegoDelete(DeleteView):
     model = Juego
-    success_url = "/app/list"   #Atención a la primer barra
+    success_url = "/app/juegos"   #Atención a la primer barra
     
     
+class ServidorList(ListView):
+    
+    model = Servidor
+    template_name = "ProyectoFinalApp/servidoresList.html"
+
+class ServidorDetail(DetailView):
+    
+    model = Servidor
+    template_name = "ProyectoFinalApp/servidorDetail.html"
+    
+class ServidorCreate(CreateView):
+    
+    model = Servidor
+    success_url = "/app/servidores"   
+    fields = ["nombre", "version"]
+    
+    
+class ServidorUpdate(UpdateView):
+    model = Servidor
+    success_url = "/app/servidores"   
+    fields = ["nombre", "version"]
+    
+class ServidorDelete(DeleteView):
+    model = Servidor
+    success_url = "/app/servidores"   

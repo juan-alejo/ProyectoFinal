@@ -8,22 +8,53 @@ Servidores - Proyecto Final
 {% block contenidoPagina %}
 <section class="bg-light py-5">
     <div class="container px-5">
+        <h1>Servidores:</h1>
+        <br>
         <div class="row gx-5 justify-content-center">
-            <div class="col-lg-3">
-                <h6>&nbsp &nbsp 
-                Servidor
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                Version</h6>
-                <p></p>
-                <ul class="list-group">
-                    {% for servidor in servidores %}
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                            {{servidor.nombre}}
-                            <span class="badge bg-success rounded-pill">{{servidor.version}}</span>
-                        </li>
-                    {% endfor %}
-                </ul>
-                &nbsp&nbsp<a href="{% url 'crearServidor' %}">+ Agregar nuevo servidor</a>
+            <div class="col-lg-12">
+                <form class="d-flex my-2 my-lg-0" action="" method="post">
+                    {% csrf_token %}
+                    <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por nombre o género" aria-label="Search">
+                    <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
+                    <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crearServidor' %}"> <i class="bi bi-plus-lg"></i> Añadir servidor</a>
+                </form>
+            </div>
+        </div>
+        <br>
+        <h4>Resultados
+            {% if search %}
+                para "{{busqueda}}":
+            {% else %}
+                totales:
+            {% endif %}
+        </h4>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-10 table-responsive">
+                <table class="table table-theme">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Versión</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for servidor in servidores %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{servidor.nombre}}</td>
+                                <td>{{servidor.version}}</td>
+                                <td>
+                                    <a href="{% url 'editarServidor' servidor.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a href="{% url 'servidorDelete' servidor.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
