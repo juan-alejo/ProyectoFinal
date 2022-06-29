@@ -6,6 +6,9 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 
 from .models import *
 from .forms import *
@@ -67,6 +70,11 @@ def register_request(request):
     form = UserRegisterForm()
     
     return render(request,"ProyectoFinalApp/register.html", {"form":form})
+
+def logout_request(request):
+    logout(request)
+    return redirect('inicio')
+    
 
 def servidores(request):
     
@@ -136,6 +144,7 @@ def crearJugador(request):
         
         return render(request,"ProyectoFinalApp/formularioJugadores.html",{"form":formularioVacio})   
 
+@login_required
 def juegos(request):
     
     if request.method == "POST":
@@ -210,7 +219,7 @@ def editarJuego(request, juego_id):
     
     return render(request,"ProyectoFinalApp/formularioJuego.html",{"form":formulario})
 
-class JuegoList(ListView):
+class JuegoList(LoginRequiredMixin,ListView):
     
     model = Juego
     template_name = "ProyectoFinalApp/juegosList.html"
@@ -235,4 +244,5 @@ class JuegoUpdate(UpdateView):
 class JuegoDelete(UpdateView):
     model = Juego
     success_url = "/app/list"   #Atención a la primer barra
+    
     
