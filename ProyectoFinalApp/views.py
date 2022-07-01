@@ -18,6 +18,15 @@ from .forms import *
 
 def inicio(request):
 
+    if request.user.is_authenticated:
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url = "/media/avatars/default.png"
+            
+        return render(request,"ProyectoFinalApp/index.html",{"url":url})
+    
     return render(request,'ProyectoFinalApp/index.html')
 
 def login_request(request):
