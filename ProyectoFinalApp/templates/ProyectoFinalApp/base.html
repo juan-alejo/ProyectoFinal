@@ -29,7 +29,8 @@
                         
 
                         {% if user.is_authenticated %}
-                            <img src="{{url}}" class="rounded-circle" width="40" height="40" alt="">
+                            <img class="rounded-circle" src="{{url}}" alt="" srcset="" style="height: 40px;">
+                            <!-- <img src="{{url}}" class="rounded-circle" width="40" height="40" alt=""> -->
                             <li class="nav-item"><p class="text-light my-2 mx-2"></i> Hola, <b>{{user.username}}</b></p></li>
                             <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                         {% else %}
