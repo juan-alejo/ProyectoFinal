@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
@@ -26,3 +28,9 @@ class Juego(models.Model):
     
     class Meta:
         verbose_name_plural = "Juegos"
+        
+        
+class Avatar(models.Model):
+    
+    usuario = models.OneToOneField(User, on_delete = models.CASCADE)
+    imagen = models.ImageField(upload_to = 'avatars', blank = True, null = True)

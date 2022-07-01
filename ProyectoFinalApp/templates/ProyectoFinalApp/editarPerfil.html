@@ -1,0 +1,24 @@
+{% extends 'ProyectoFinalApp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Editar perfil - Proyecto Final App
+{% endblock %}
+
+{% block contenidoPagina %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h2>Editar perfil</h2>
+        <br>
+        <h5>Estás editando el usuario {{user.username}}</h5>
+        <br>
+        <form action="" method="post">
+            {% csrf_token %}
+
+            {{form.as_p}}
+
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

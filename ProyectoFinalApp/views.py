@@ -47,6 +47,7 @@ def login_request(request):
 def register_request(request):
     
     if request.method == "POST":
+        
         form = UserRegisterForm(request.POST)
         
         if form.is_valid():
@@ -65,7 +66,7 @@ def register_request(request):
                 return redirect("login")
             
         
-        return render(request,"ProyectoFinalApp/register.html")
+        return render(request,"ProyectoFinalApp/register.html", {"form":form})
     
     form = UserRegisterForm()
     
@@ -74,7 +75,33 @@ def register_request(request):
 def logout_request(request):
     logout(request)
     return redirect('inicio')
+ 
+@login_required    
+def editarPerfil(request):
     
+    user = request.user  #Usuario con el que estoy logeado
+    
+    if request.method == "POST":
+        
+        form = UserEditForm(request.POST)
+        
+        if form.is_valid():
+            
+            info = form.cleaned_data
+            user.email = info["email"]
+            user.first_name = info["first_name"]
+            user.last_name = info["last_name"]
+            
+            user.save()
+            
+            return redirect("inicio")
+        
+        return render(request,"ProyectoFinalApp/editarPerfil.html",{"form":form})   
+     
+    else:
+        form = UserEditForm(initial = {"email":user.email, "first_name":user.first_name, "last_name":user.last_name})
+    
+    return render(request,"ProyectoFinalApp/editarPerfil.html",{"form":form})
 
 def servidores(request):
     

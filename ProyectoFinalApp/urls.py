@@ -11,6 +11,7 @@ urlpatterns = [
     path('crearservidor/', crearServidor, name= "crearServidor"),
     path('jugadores/', jugadores, name= "jugadores"),
     path('crearjugador/', crearJugador, name= "crearJugador"),
+    path('editarperfil/', editarPerfil, name= "editarperfil"),
     
     path('crearjuego/', crearJuego, name= "crearjuego"),
     path('eliminarjuego/<juego_id>', eliminarJuego, name = "eliminarJuego"),

@@ -22,3 +22,5 @@ class JuegoAdmin(admin.ModelAdmin):
 admin.site.register(Servidor, ServidorAdmin)
 admin.site.register(Jugador, JugadorAdmin)
 admin.site.register(Juego, JuegoAdmin)
+
+admin.site.register(Avatar)
