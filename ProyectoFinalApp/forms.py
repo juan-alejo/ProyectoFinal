@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Avatar
 
 class NuevoServidor(forms.Form):
     nombre = forms.CharField(max_length = 25, label = "Nombre del servidor")
@@ -46,3 +47,11 @@ class UserEditForm(UserCreationForm):
         fields = ['email', 'password1', 'password2', 'first_name', 'last_name']
         
         help_texts = {k:"" for k in fields}
+        
+class AvatarForm(forms.Form):
+
+    imagen = forms.ImageField(label="Imagen", required=False)
+
+    class Meta:
+        model = Avatar
+        fields = ['imagen']

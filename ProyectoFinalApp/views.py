@@ -16,6 +16,32 @@ from .forms import *
 
 # Create your views here.
 
+@login_required
+def agregarAvatar(request):
+    
+    if request.method == "POST":
+            
+        form = AvatarForm(request.POST, request.FILES)
+
+        if form.is_valid():
+
+            user = User.objects.get(username=request.user.username) # usuario con el que estamos loggueados
+
+            avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
+
+            avatar.save()
+
+
+            return redirect("inicio")
+
+    else:
+        form = AvatarForm()
+    
+    return render(request,"ProyectoFinalApp/agregaravatar.html",{"form":form})
+    
+    
+    
+
 def inicio(request):
 
     if request.user.is_authenticated:
