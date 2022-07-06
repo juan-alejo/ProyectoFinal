@@ -50,7 +50,9 @@ Juegos - Games Leaderboard
                             <th scope="col">Puesto</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Género</th>
+                            {% if user.is_superuser %}
                             <th scope="col">Acciones</th>
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody>
@@ -61,8 +63,10 @@ Juegos - Games Leaderboard
                                 <td>{{juego.nombre}}</td>
                                 <td>{{juego.genero}}</td>
                                 <td>
+                                    {% if user.is_superuser %}
                                     <a href="{% url 'editarJuego' juego.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
                                     <a href="{% url 'juegoDelete' juego.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

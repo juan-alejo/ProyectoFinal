@@ -32,7 +32,6 @@ def agregarAvatar(request):
 
             avatar.save()
 
-
             return redirect("inicio")
 
     else:
@@ -93,6 +92,8 @@ def register_request(request):
 
             form.save()
             
+            messages.success(request, "Usuario registrado correctamente")
+            
             user = authenticate(username=username, password=password)
             
             if user is not None:
@@ -130,6 +131,8 @@ def editarPerfil(request):
             user.last_name = info["last_name"]
             
             user.save()
+            
+            messages.success(request, "Perfil editado correctamente")
             
             return redirect("inicio")
         
