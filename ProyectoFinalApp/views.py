@@ -107,6 +107,7 @@ def register_request(request):
     
     return render(request,"ProyectoFinalApp/register.html", {"form":form})
 
+@login_required
 def logout_request(request):
     logout(request)
     return redirect('inicio')
