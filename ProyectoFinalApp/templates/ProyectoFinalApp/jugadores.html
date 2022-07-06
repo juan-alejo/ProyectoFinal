@@ -6,6 +6,16 @@ Jugadores - Games Leaderboard
 {% endblock %}
 
 {% block contenidoPagina %}
+
+
+{% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-primary" role="alert" >
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+
 <section class="bg-light py-5">
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">

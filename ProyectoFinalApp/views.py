@@ -8,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 from .models import *
@@ -169,6 +170,8 @@ def crearServidor(request):
             
             servidor.save()
             
+            messages.success(request, "Servidor creado correctamente")
+            
             return redirect("servidores") 
         
         else:
@@ -203,6 +206,8 @@ def crearJugador(request):
             
             jugador.save()
             
+            messages.success(request, "Jugador creado correctamente")
+            
             return redirect("jugadores") 
         
         else:
@@ -216,7 +221,7 @@ def crearJugador(request):
         
         return render(request,"ProyectoFinalApp/formularioJugadores.html",{"form":formularioVacio})   
 
-@login_required
+
 def juegos(request):
     
     if request.method == "POST":
@@ -246,6 +251,8 @@ def crearJuego(request):
             juego = Juego(nombre = infoJuego["nombre"], genero = (infoJuego["genero"]))
             
             juego.save()
+            
+            messages.success(request, "Juego creado correctamente")
             
             return redirect("juegos") 
         
