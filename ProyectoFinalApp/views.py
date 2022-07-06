@@ -38,7 +38,7 @@ def agregarAvatar(request):
     else:
         form = AvatarForm()
     
-    return render(request,"ProyectoFinalApp/agregaravatar.html",{"form":form})
+    return render(request,"ProyectoFinalApp/agregarAvatar.html",{"form":form})
     
     
     
