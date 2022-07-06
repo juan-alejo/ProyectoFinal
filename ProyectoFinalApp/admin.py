@@ -6,8 +6,8 @@ from .models import *
 
 
 class ServidorAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'version')
-    search_fields = ('nombre', 'version')
+    list_display = ('nombre', 'version', 'juegoServer')
+    search_fields = ('nombre', 'version', 'juegoServer')
     
     
 class JugadorAdmin(admin.ModelAdmin):

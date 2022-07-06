@@ -6,25 +6,6 @@ Juegos - Games Leaderboard
 {% endblock %}
 
 {% block contenidoPagina %}
-{% comment %}
-<section class="bg-light py-5">
-    <div class="container px-5">
-        <div class="row gx-5 justify-content-center">
-            <div class="col-lg-3">
-                <h4><p style="text-align:center">Juegos</p></h4>
-                <ul class="list-group">
-                    {% for juego in juegos %}
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                            {{juego.nombre}} - {{juego.genero}}
-                        </li>
-                    {% endfor %}
-                </ul>
-                &nbsp&nbsp<a href="{% url 'crearjuego' %}">+ Agregar nuevo juego</a>
-            </div>
-        </div>
-    </div>
-</section>
-{% endcomment %}
 <section class="bg-light py-5">
     <div class="container px-5">
         <h1>Top mensual de juegos</h1>

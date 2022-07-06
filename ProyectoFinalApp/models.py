@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Servidor(models.Model):
     nombre = models.CharField(max_length = 20) #texto
     version = models.IntegerField() #numerico
+    juegoServer = models.CharField(max_length = 20) 
     
     class Meta:
         verbose_name_plural = "Servidores"

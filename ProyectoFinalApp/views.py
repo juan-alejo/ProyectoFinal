@@ -141,6 +141,15 @@ def editarPerfil(request):
 
 def servidores(request):
     
+    if request.method == "POST":
+        
+        search = request.POST["search"]
+        
+        if search !="":
+            servidores = Servidor.objects.filter( Q(nombre__icontains=search)| Q(version__icontains=search)| Q(juegoServer__icontains=search) ).values()
+            
+            return render(request, "ProyectoFinalApp/servidores.html",{"servidores":servidores, "search":True, "busqueda":search})
+    
     servidores = Servidor.objects.all()
     
     return render(request,"ProyectoFinalApp/servidores.html",{"servidores":servidores})
@@ -156,7 +165,7 @@ def crearServidor(request):
             
             infoServidor = formularioServidor.cleaned_data
         
-            servidor = Servidor(nombre = infoServidor["nombre"], version =int(infoServidor["version"]))
+            servidor = Servidor(nombre = infoServidor["nombre"], version =int(infoServidor["version"]), juegoServer = infoServidor["juegoServer"])
             
             servidor.save()
             
@@ -297,14 +306,18 @@ def editarServidor(request, servidor_id):
             
             servidor.nombre = infoServidor["nombre"]
             servidor.version = infoServidor["version"]
+            servidor.juegoServer = infoServidor["juegoServer"]
             servidor.save()
             
             return redirect("servidores")
         
         
-    formulario = NuevoServidor(initial={"nombre":servidor.nombre, "version":servidor.version})
+    formulario = NuevoServidor(initial={"nombre":servidor.nombre, "version":servidor.version, "juegoServer":servidor.juegoServer})
     
     return render(request,"ProyectoFinalApp/formularioServidor.html",{"form":formulario})
+
+def about(request):
+    return render(request,"ProyectoFinalApp/about.html")
 
 class JuegoList(LoginRequiredMixin,ListView):
     

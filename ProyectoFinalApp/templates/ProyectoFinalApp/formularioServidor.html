@@ -6,14 +6,29 @@ Formulario servidor - Games Leaderboard
 {% endblock %}
 
 {% block contenidoPagina %}
-<h2> Formulario servidor:</h2>
-<form action="" method="post">
-    {% csrf_token %}
+<section class="bg-light py-5">
+    <div class="container px-5">
+        <h2>Formulario servidor:</h2>
+        <br>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                        
+                            {{ form.as_p }}
+                        
+                            <input type="submit" class="btn btn-primary" value="Guardar servidor">
+                        </form>
+                    </div>
+                </div>
 
-    {{ form.as_p }}
-
-    <input type="submit" value="Guardar servidor">
-    <p></p>
-</form>
-
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -13,6 +13,7 @@ urlpatterns = [
     path('crearjugador/', crearJugador, name= "crearJugador"),
     path('editarperfil/', editarPerfil, name= "editarperfil"),
     path('agregaravatar/', agregarAvatar, name= "agregarAvatar"),
+    path('about/', about, name= "about"),
     
     path('crearjuego/', crearJuego, name= "crearjuego"),
     path('eliminarjuego/<juego_id>', eliminarJuego, name = "eliminarJuego"),

@@ -18,7 +18,7 @@ Servidores - Games Leaderboard
             <div class="col-lg-12">
                 <form class="d-flex my-2 my-lg-0" action="" method="post">
                     {% csrf_token %}
-                    <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por nombre o género" aria-label="Search">
+                    <input class="flex-grow-0 form-control mr-sm-2" type="search" name="search" placeholder="Buscar por nombre, versión o juego" aria-label="Search">
                     <button class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" type="submit"> <i class="bi bi-search"></i> Buscar</button>
                     <a class="btn btn-outline-success text-nowrap ms-3 my-2 my-sm-0" href="{% url 'crearServidor' %}"> <i class="bi bi-plus-lg"></i> Añadir servidor</a>
                 </form>
@@ -41,6 +41,7 @@ Servidores - Games Leaderboard
                             <th scope="col">Puesto</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Versión</th>
+                            <th scope="col">Juego</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -51,6 +52,7 @@ Servidores - Games Leaderboard
                                 <th scope="row">{{forloop.counter}}</th>
                                 <td>{{servidor.nombre}}</td>
                                 <td>{{servidor.version}}</td>
+                                <td>{{servidor.juegoServer}}</td>
                                 <td>
                                     <a href="{% url 'editarServidor' servidor.id %}" class="text-primary badge badge-primary text-decoration-none"> <i class="bi bi-pencil-square"></i> Editar</a>
                                     <a href="{% url 'servidorDelete' servidor.id %}" class="text-danger badge badge-danger text-decoration-none"> <i class="bi bi-x-square"></i> Eliminar</a>
