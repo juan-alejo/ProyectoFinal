@@ -34,4 +34,4 @@ class Juego(models.Model):
 class Avatar(models.Model):
     
     usuario = models.OneToOneField(User, on_delete = models.CASCADE)
-    imagen = models.ImageField(upload_to = 'avatars', blank = True, null = True)
+    imagen = models.ImageField(upload_to = 'avatars/', blank = True, null = True)
