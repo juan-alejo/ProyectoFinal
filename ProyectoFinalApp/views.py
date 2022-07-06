@@ -275,6 +275,8 @@ def eliminarJuego(request, juego_id):
     juego = Juego.objects.get(id=juego_id)
     juego.delete()
     
+    messages.success(request, "Juego eliminado correctamente")
+    
     return redirect("juegos")
 
 def editarJuego(request, juego_id):
@@ -293,6 +295,8 @@ def editarJuego(request, juego_id):
             juego.nombre = infoJuego["nombre"]
             juego.genero = infoJuego["genero"]
             juego.save()
+            
+            messages.success(request, "Juego editado correctamente")
             
             return redirect("juegos")
         
@@ -318,6 +322,8 @@ def editarServidor(request, servidor_id):
             servidor.version = infoServidor["version"]
             servidor.juegoServer = infoServidor["juegoServer"]
             servidor.save()
+            
+            messages.success(request, "Servidor editado correctamente")
             
             return redirect("servidores")
         
@@ -380,4 +386,4 @@ class ServidorUpdate(UpdateView):
     
 class ServidorDelete(DeleteView):
     model = Servidor
-    success_url = "/app/servidores"   
+    success_url = "/app/servidores" 
