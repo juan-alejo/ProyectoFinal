@@ -409,7 +409,7 @@ def about(request):
 class JuegoList(LoginRequiredMixin, ListView):
 
     model = Juego
-    template_name = "ProyectoFinalApp/juegosList.html"
+    template_name = "/ProyectoFinalApp/juegos.html"
 
 
 class JuegoDetail(DetailView):
@@ -421,19 +421,19 @@ class JuegoDetail(DetailView):
 class JuegoCreate(CreateView):
 
     model = Juego
-    success_url = "/app/list"  # Atención a la primer barra
+    success_url = "/app/juegos"  # Atención a la primer barra
     fields = ["nombre", "genero"]
 
 
 class JuegoUpdate(UpdateView):
     model = Juego
-    success_url = "/app/list"  # Atención a la primer barra
+    success_url = "/ProyectoFinalApp/juegos.html"  # Atención a la primer barra
     fields = ["nombre", "genero"]
 
 
 class JuegoDelete(DeleteView):
     model = Juego
-    success_url = "/app/juego_Confirm_Delete"  # Atención a la primer barra
+    success_url = "/app/juegos"  # Atención a la primer barra
 
 
 class ServidorList(ListView):
@@ -445,7 +445,7 @@ class ServidorList(ListView):
 class ServidorDetail(DetailView):
 
     model = Servidor
-    template_name = "ProyectoFinalApp/servidorDetail.html"
+    template_name = "app/servidorDetail.html"
 
 
 class ServidorCreate(CreateView):
@@ -463,4 +463,4 @@ class ServidorUpdate(UpdateView):
 
 class ServidorDelete(DeleteView):
     model = Servidor
-    success_url = "/app/servidor_Confirm_Delete"
+    success_url = "/app/servidores/"
