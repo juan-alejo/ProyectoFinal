@@ -45,14 +45,14 @@ def agregarAvatar(request):
 
 def inicio(request):
 
-    if request.user.is_authenticated:
-        try:
-            avatar = Avatar.objects.get(usuario=request.user)
-            url = avatar.imagen.url
-        except:
-            url = "/media/avatars/default.png"
+    # if request.user.is_authenticated:
+    #     try:
+    #         avatar = Avatar.objects.get(usuario=request.user)
+    #         url = avatar.imagen.url
+    #     except:
+    #         url = "/media/avatars/default.png"
 
-        return render(request, "ProyectoFinalApp/index.html", {"url": url})
+    #     return render(request, "ProyectoFinalApp/index.html", {"url": url})
 
     return render(request, "ProyectoFinalApp/index.html")
 
@@ -364,6 +364,7 @@ def editarJuego(request, juego_id):
     return render(
         request, "ProyectoFinalApp/formularioJuego.html", {"form": formulario}
     )
+
 
 @login_required
 def editarServidor(request, servidor_id):
