@@ -1,17 +1,34 @@
+{% extends 'ProyectoFinalApp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Eliminar juego - Games Leaderboard
+{% endblock %}
+
+{% block contenidoPagina %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar juego</title>
-</head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        Está seguro que quiere eliminar el juego: {{object.nombre}} {{object.genero}}?
 
-        <input type="submit" value="Sí, eliminar.">
-    </form>
-</body>
+<section class="bg-light py-5">
+    <div class="row gx-5 justify-content-center">
+    <body>
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2>
+            <div class="row gx-5 justify-content-center">
+                Está seguro que quiere eliminar el juego: {{object.nombre}} - {{object.genero}} ?
+            <br>
+            <br>
+            </h2>
+            </div>
+            <br>
+            <div class="col-lg-30 text-center">
+            <button class="btn btn-primary mx-3" type="submit"> Sí, eliminar</button>
+            </div>
+            <br>
+         </form>
+    </body>
+    </div>
+</section>
+{% endblock %}
 </html>
