@@ -30,6 +30,10 @@ def agregarAvatar(request):
             user = User.objects.get(
                 username=request.user.username
             )  # usuario con el que estamos loggueados
+            
+            there_avatar = Avatar.objects.get(usuario=user)  #Si quiere cambiar de avatar y usuario ya tiene, se obtiene y se elimina
+            
+            there_avatar.delete()
 
             avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
 
