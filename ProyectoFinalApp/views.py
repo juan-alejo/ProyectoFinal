@@ -433,7 +433,7 @@ class JuegoUpdate(UpdateView):
 
 class JuegoDelete(DeleteView):
     model = Juego
-    success_url = "/app/juegos"  # Atención a la primer barra
+    success_url = "/app/juego_Confirm_Delete"  # Atención a la primer barra
 
 
 class ServidorList(ListView):
@@ -463,4 +463,4 @@ class ServidorUpdate(UpdateView):
 
 class ServidorDelete(DeleteView):
     model = Servidor
-    success_url = "/app/servidores"
+    success_url = "/app/servidor_Confirm_Delete"
