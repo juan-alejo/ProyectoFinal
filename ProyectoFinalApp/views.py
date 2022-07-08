@@ -30,15 +30,20 @@ def agregarAvatar(request):
             user = User.objects.get(
                 username=request.user.username
             )  # usuario con el que estamos loggueados
-            
-            there_avatar = Avatar.objects.get(usuario=user)  #Si quiere cambiar de avatar y usuario ya tiene, se obtiene y se elimina
-            
-            there_avatar.delete()
+                
+            if request.user.is_authenticated:
+                try:
+                    there_avatar = Avatar.objects.get(usuario=user)  #Si quiere cambiar de avatar y usuario ya tiene, se obtiene y se elimina
+                    there_avatar.delete()
+                    avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
 
-            avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
+                    avatar.save()
+                except:
+                
+                    avatar = Avatar(usuario=user, imagen=form.cleaned_data["imagen"])
 
-            avatar.save()
-
+                    avatar.save()
+                messages.success(request, "Avatar cambiado correctamente")
             return redirect("inicio")
 
     else:
@@ -49,14 +54,6 @@ def agregarAvatar(request):
 
 def inicio(request):
 
-    # if request.user.is_authenticated:
-    #     try:
-    #         avatar = Avatar.objects.get(usuario=request.user)
-    #         url = avatar.imagen.url
-    #     except:
-    #         url = "/media/avatars/default.png"
-
-    #     return render(request, "ProyectoFinalApp/index.html", {"url": url})
 
     return render(request, "ProyectoFinalApp/index.html")
 

@@ -40,7 +40,7 @@
                     {% if user.avatar.imagen.url %}
                     <img class="rounded-circle" src="{{user.avatar.imagen.url}}" width="35" height="35" alt="">
                     {% else %}
-                    <i class="bi bi-person-circle text-light my-2"></i>
+                    <img class="rounded-circle" src="{%static 'assets/default.png'%}" width="35" height="35" alt="">
                     {% endif %}
                     <li class="nav-item">
                         <p class="text-light my-1 mx-1"></i> &nbsp Hola, <b>{{user.username}} &nbsp</b></p>
