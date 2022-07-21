@@ -1,0 +1,34 @@
+{% extends 'ProyectoFinalApp/base.html' %}
+{% load static %}
+
+{% block tituloPagina %}
+Eliminar jugador - Games Leaderboard
+{% endblock %}
+
+{% block contenidoPagina %}
+<!DOCTYPE html>
+<html lang="en">
+
+<section class="bg-light py-5">
+    <div class="row gx-5 justify-content-center">
+    <body>
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2>
+            <div class="row gx-5 justify-content-center">
+                Está seguro que quiere eliminar el jugador: {{object.nombre}} {{object.apellido}} ?
+            <br>
+            <br>
+            </h2>
+            </div>
+            <br>
+            <div class="col-lg-30 text-center">
+            <button class="btn btn-primary mx-3" type="submit"> Sí, eliminar</button>
+            </div>
+            <br>
+         </form>
+    </body>
+    </div>
+</section>
+{% endblock %}
+</html>

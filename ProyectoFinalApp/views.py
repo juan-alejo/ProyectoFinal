@@ -368,6 +368,35 @@ def editarJuego(request, juego_id):
 
 
 @login_required
+def editarJugador(request, jugador_id):
+
+    jugador = Jugador.objects.get(id=jugador_id)
+
+    if request.method == "POST":
+
+        formulario = NuevoJugador(request.POST)
+
+        if formulario.is_valid():
+
+            infoJugador = formulario.cleaned_data
+
+            jugador.nombre = infoJugador["nombre"]
+            jugador.apellido = infoJugador["apellido"]
+            jugador.edad = infoJugador["edad"]
+            jugador.usuario = infoJugador["usuario"]
+            jugador.save()
+
+            messages.success(request, "Jugador editado correctamente")
+
+            return redirect("jugadores")
+
+    formulario = NuevoJugador(initial={"nombre": jugador.nombre, "apellido": jugador.apellido, "edad": jugador.edad, "usuario": jugador.usuario})
+
+    return render(
+        request, "ProyectoFinalApp/formularioJugadores.html", {"form": formulario}
+    )
+
+@login_required
 def editarServidor(request, servidor_id):
 
     servidor = Servidor.objects.get(id=servidor_id)
@@ -464,3 +493,8 @@ class ServidorUpdate(UpdateView):
 class ServidorDelete(DeleteView):
     model = Servidor
     success_url = "/app/servidores/"
+
+
+class JugadorDelete(DeleteView):
+    model = Jugador
+    success_url = "/app/jugadores/"  # Atención a la primer barra

@@ -38,4 +38,7 @@ urlpatterns = [
     path('servidores/nuevo', ServidorCreate.as_view(), name = "servidorCreate"), 
     path('servidores/editar/<pk>', ServidorUpdate.as_view(), name = "servidorUpdate"),       
     path('servidores/eliminar/<pk>', ServidorDelete.as_view(), name = "servidorDelete"),
+    
+    path('editarJugador/<jugador_id>', editarJugador, name = "editarJugador"),
+    path('jugadores/eliminar/<pk>', JugadorDelete.as_view(), name = "jugadorDelete"),
 ]
